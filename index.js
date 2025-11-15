@@ -58,7 +58,7 @@ fastify.register(require("@fastify/swagger-ui"), {
 fastify.register(require("./routes/permissions"));
 fastify.register(require("./routes/users"));
 fastify.register(require("./routes/roles"));
-fastify.register(require("./routes/role_premissions"));
+fastify.register(require("./routes/role_permissions"));
 fastify.register(require("./routes/user_roles"));
 fastify.register(require("./routes/booking_logs"));
 fastify.register(require("./routes/bookings"));
