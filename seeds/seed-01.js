@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -15,18 +17,21 @@ exports.seed = async function (knex) {
   await knex("role").del();
   await knex("permission").del();
 
+  const userPass = await bcrypt.hash("user", 10);
+  const adminPass = await bcrypt.hash("admin", 10);
+
   // Users
   await knex("user").insert([
     {
       name: "User",
       email: "user@example.com",
-      password: "user",
+      password: userPass,
       created_at: new Date(),
     },
     {
       name: "Admin",
       email: "admin@example.com",
-      password: "admin",
+      password: adminPass,
       created_at: new Date(),
     },
   ]);
