@@ -6,8 +6,19 @@ const bcrypt = require("bcrypt");
  */
 
 exports.seed = async function (knex) {
+  // TRUNCATE + RESTART IDENTITY formában, hogy az ID-k újra 1-től induljanak és ne kapj foreign key hibát
+  await knex.raw('TRUNCATE TABLE booking_log RESTART IDENTITY CASCADE');
+  await knex.raw('TRUNCATE TABLE user_role RESTART IDENTITY CASCADE');
+  await knex.raw('TRUNCATE TABLE role_permission RESTART IDENTITY CASCADE');
+  await knex.raw('TRUNCATE TABLE booking RESTART IDENTITY CASCADE');
+  await knex.raw('TRUNCATE TABLE timeslot RESTART IDENTITY CASCADE');
+  await knex.raw('TRUNCATE TABLE room RESTART IDENTITY CASCADE');
+  await knex.raw('TRUNCATE TABLE "user" RESTART IDENTITY CASCADE');
+  await knex.raw('TRUNCATE TABLE role RESTART IDENTITY CASCADE');
+  await knex.raw('TRUNCATE TABLE permission RESTART IDENTITY CASCADE');
+
   // Törlés helyes sorrendben (függőségek miatt)
-  await knex("booking_log").del();
+  /*  await knex("booking_log").del();
   await knex("user_role").del();
   await knex("role_permission").del();
   await knex("booking").del();
@@ -16,6 +27,7 @@ exports.seed = async function (knex) {
   await knex("user").del();
   await knex("role").del();
   await knex("permission").del();
+*/
 
   const userPass = await bcrypt.hash("user", 10);
   const adminPass = await bcrypt.hash("admin", 10);

@@ -40,7 +40,6 @@ const getOne = {
 
 const post = {
   schema: {
-    security: [{ Bearer: [] }],
     description: "Create a new user (registration)",
     body: {
       type: "object",
@@ -57,7 +56,6 @@ const post = {
     },
   },
   handler: addUser,
-  onRequest: [fastify.authenticate],
 };
 
 const update = {
