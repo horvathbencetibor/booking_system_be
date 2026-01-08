@@ -1,6 +1,9 @@
 const fastify = require("fastify")({ logger: true });
 const { knex } = require("./database");
 
+const PORT = Number(process.env.PORT || 12667);
+const HOST = process.env.HOST || "127.0.0.1";
+
 // CORS
 fastify.register(require("@fastify/cors"), {
   origin: true,
@@ -83,13 +86,13 @@ const start = async () => {
   const path = require("path");
   await knex.migrate.latest({ directory: path.join(__dirname, "dbmigrations") });
 
-  fastify.listen({ port: 3000, host: "0.0.0.0" }, (err, address) => {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-    console.log(`Server listening on ${address}`);
-  });
+fastify.listen({ port: PORT, host: HOST }, (err, address) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  console.log(`Server listening on ${address}`);
+});
 };
 
 start();
