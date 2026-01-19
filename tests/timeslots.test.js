@@ -19,7 +19,7 @@ beforeAll(async () => {
     { expiresIn: "1h" }
   );
 
-  // szükséges egy teszt room
+  // teszt room
   const [room] = await knex("room")
     .insert({
       name: "TEST_TIMESLOT_ROOM",

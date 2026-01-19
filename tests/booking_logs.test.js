@@ -1,7 +1,4 @@
-test("sanity check", () => {
-  expect(true).toBe(true);
-});
-
+// tests/bookings_logs.test.js
 const request = require("supertest");
 const jwt = require("jsonwebtoken");
 

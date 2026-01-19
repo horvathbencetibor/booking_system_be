@@ -9,7 +9,6 @@ let validToken;
 let createdBookingId;
 
 beforeAll(() => {
-  // Cseréld a token kulcsot a projektedhez!
   validToken = jwt.sign({ user_id: 2 }, "secretKeyForBookingSystem213edaefw", { expiresIn: '1h' });
 });
 
